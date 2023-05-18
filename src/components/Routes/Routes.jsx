@@ -6,6 +6,7 @@ const Routes = () => {
         <div>
             <Navbar></Navbar>
             <Outlet></Outlet>
+            
         </div>
     );
 };

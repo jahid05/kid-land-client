@@ -9,6 +9,7 @@ import {
 import Routes from './components/Routes/Routes.jsx';
 import Home from './components/pages/Home/Home.jsx';
 import AllProducts from './components/pages/AllProducts/AllProducts';
+import Login from './components/pages/Login/Login';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: 'allToys',
         element: <AllProducts></AllProducts>,
+      },
+      {
+        path: 'login',
+        element: <Login></Login>
       }
     ]
   },

@@ -12,6 +12,9 @@ import Error from "./components/pages/Error/Error";
 import Contact from "./components/pages/Contact/Contact";
 import AuthProvider from "./context/Auth/AuthProvider";
 import ToyDetails from "./components/pages/AllProducts/ToyDetails";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
 
 const router = createBrowserRouter([
   {

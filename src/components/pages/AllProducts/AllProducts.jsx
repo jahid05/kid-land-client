@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import CommnonLoader from "../Shared/CommonLoader/CommnonLoader";
 import Product from "./Product";
+
+
+
 const AllProducts = () => {
   const [toyCollection, setToyCollection] = useState([])
   const [loading, setLoading] = useState(false);

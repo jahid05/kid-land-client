@@ -92,7 +92,7 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
       {user?.uid ? (
-        <div className="navbar-end ">
+        <div className="navbar-end">
           <div className="tooltip tooltip-bottom " data-tip={user?.displayName}>
             <div className="flex items-center gap-2">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
@@ -104,14 +104,14 @@ const Navbar = () => {
                   )}
                 </div>
               </label>
-              <button
-                className="btn py-1 rounded-full px-4 normal-case font-custom-100 bg-theme-100 border-none"
+            </div>
+          </div>
+          <button
+                className="btn py-1  rounded-full px-4 ms-2 normal-case font-custom-100 bg-theme-100 border-none"
                 onClick={handdelLogout}
               >
                 Sign out
               </button>
-            </div>
-          </div>
         </div>
       ) : (
         <div className="navbar-end">

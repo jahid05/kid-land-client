@@ -9,6 +9,7 @@ const AllProducts = () => {
   useEffect(() =>{
     setLoading(true)
     fetch('http://localhost:5000/collection')
+    // fetch('https://kids-land-4u4y6cbvk-jahid05.vercel.app/collection')
     .then(res => res.json())
     .then(data => {
       setToyCollection(data)

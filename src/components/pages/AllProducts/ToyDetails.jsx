@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 
 const ToyDetails = () => {
   const details = useLoaderData();
+  console.log(details);
 
   return (
     <div className="container mx-auto">

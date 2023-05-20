@@ -1,31 +1,37 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaFacebook, FaGoogle, FaLinkedinIn } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../context/Auth/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const { signIn, googleLoginPopup } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const googleProvider = new GoogleAuthProvider();
+  const navigate = useNavigate();
+  const [error, setError] = useState('');
 
-  
   const handleLogin = (event) => {
     event.preventDefault();
 
     signIn(email, password)
       .then((res) => {
+        toast.success("Sign in Successfully!");
+        navigate('/')
         console.log(res);
       })
       .catch((err) => {
         console.log(err);
+        setError(err.message);
       });
   };
   const handelGoogleLogin = () => {
     googleLoginPopup(googleProvider)
       .then(() => {
-        
+        navigate('/');
+        toast.success("Sign in Successfully!");
       })
       .catch((err) => {
         console.log(err);
@@ -41,7 +47,7 @@ const Login = () => {
             <p className="py-6">
               Enter your personal details and start journey with us
             </p>
-            <Link to='/signUp'>
+            <Link to="/signUp">
               <button className="btn btn-outline rounded-full px-9 normal-case border-white border-2 text-white">
                 Sign Up
               </button>
@@ -78,6 +84,7 @@ const Login = () => {
                   <span className="label-text">Email</span>
                 </label>
                 <input
+                  required
                   type="text"
                   name="email"
                   placeholder="email"
@@ -91,6 +98,7 @@ const Login = () => {
                   <span className="label-text">Password</span>
                 </label>
                 <input
+                  required
                   type="password"
                   name="password"
                   placeholder="password"
@@ -99,9 +107,7 @@ const Login = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
+                  {error && <p className="text-error font-semibold">{error}</p>}
                 </label>
               </div>
               <div className="form-control mt-6">
@@ -111,7 +117,7 @@ const Login = () => {
                     className="btn bg-theme-100 border-none btn-block rounded-full"
                     type="submit"
                   >
-                    Login
+                    Sign in
                   </button>
                 </Link>
               </div>

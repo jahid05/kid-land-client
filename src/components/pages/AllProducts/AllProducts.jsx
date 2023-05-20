@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
+import TabBar from "../TabBar/TabBar";
 const AllProducts = () => {
   const [toyCollection, setToyCollection] = useState([])
 
@@ -16,7 +17,10 @@ const AllProducts = () => {
           All Products
         </h1>
       </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 mx-auto gap-6 py-24">
+      <TabBar>
+        
+      </TabBar>
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 mx-auto gap-6 py-24 px-4">
         {
         toyCollection.map((toyCard) => (
           <div key={toyCard._id} className="card   shadow-2xl">
@@ -35,8 +39,8 @@ const AllProducts = () => {
                   <FaStar/> <span className="px-3 ">{toyCard.rating}</span></p>
               </div>
               <div className="card-actions justify-end">
-                <button className="btn bg-theme-100 border-none normal-case">
-                  Buy Now
+                <button className="btn bg-theme-100 border-none rounded-full normal-case">
+                  View Details
                 </button>
               </div>
             </div>

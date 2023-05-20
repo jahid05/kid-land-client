@@ -40,7 +40,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <Link to='/login'>
-          <button className="btn rounded-full px-9 normal-case font-custom-100 bg-theme-100 hover:bg-theme-200 border-none">Login</button>
+          <button className="btn rounded-full px-9 normal-case font-custom-100 bg-theme-100 hover:bg-theme-200 border-none">Sign in</button>
         </Link>
       </div>
     </div>

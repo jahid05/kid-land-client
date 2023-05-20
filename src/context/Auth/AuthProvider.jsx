@@ -1,23 +1,19 @@
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut ,updateProfile,} from 'firebase/auth';
-import { createContext, useState } from 'react';
+import { createContext } from 'react';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile,  } from 'firebase/auth';
+import { useState } from 'react';
 import { useEffect } from 'react';
 import app from '../../Firebase/firebase.config';
 
-
-
-export const AuthContext = createContext()
+export const AuthContext = createContext(app)
 
 const auth = getAuth(app)
 
-
-// eslint-disable-next-line react/prop-types
-const AuthProvider = ({ children }) => {
-
+const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
 
 
-    const providerLogin = (provider) => {
+    const googleLoginPopup = (provider) => {
         setLoading(true);
         return signInWithPopup(auth, provider)
 
@@ -25,9 +21,9 @@ const AuthProvider = ({ children }) => {
 
     const updateUserProfile = (profile) => {
         setLoading(true);
-        return updateProfile(auth.currentUser,profile)
+        return updateProfile(auth.currentUser, profile)
     }
-  
+
 
 
     const gitProviderLogin = (provider) => {
@@ -56,7 +52,7 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-     
+
             setUser(currentUser)
             setLoading(false);
         });
@@ -69,7 +65,7 @@ const AuthProvider = ({ children }) => {
 
 
 
-    const authInfo = { user, providerLogin, logOut, createUser, signIn, loading, gitProviderLogin,updateUserProfile,setLoading}
+    const authInfo = { user,  googleLoginPopup, logOut, createUser, signIn, loading, gitProviderLogin, updateUserProfile, setLoading }
 
     return (
         <AuthContext.Provider value={authInfo}>

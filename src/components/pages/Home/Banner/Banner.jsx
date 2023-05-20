@@ -9,7 +9,7 @@ const Banner = () => {
         />
         <div className="space-y-5">
           <h3 className="text-theme-100 font-bold md:text-2xl">Latest Collection</h3>
-          <h1 className="md:text-7xl text-4xl font-custom-200 font-extrabold">Kids Cars Toys Monster Truck</h1>
+          <h1 className="md:text-7xl text-4xl font-custom-200 font-extrabold">Baby & Toddler <br /> Toys at Best <br /> <span className='text-theme-100 text-9xl'> 25%</span> Off</h1>
           <p className="text-lg text-theme-300">
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et

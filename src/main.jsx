@@ -8,9 +8,10 @@ import Home from "./components/pages/Home/Home.jsx";
 import AllProducts from "./components/pages/AllProducts/AllProducts";
 import Login from "./components/pages/Login/Login";
 import SignUp from "./components/pages/SignUp/SignUp";
-import AuthProvider from "./components/Context/AuthProvider";
 import Error from "./components/pages/Error/Error";
 import Contact from "./components/pages/Contact/Contact";
+import AuthProvider from "./context/Auth/AuthProvider";
+import ToyDetails from "./components/pages/AllProducts/ToyDetails";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,11 @@ const router = createBrowserRouter([
       {
         path: "contact",
         element: <Contact></Contact>
+      },
+      {
+        path: "toyDetails/:id",
+        element: <ToyDetails></ToyDetails>,
+        loader: ({params}) => fetch(`http://localhost:5000/toyDetails/${params.id}`)
       }
     ],
   },

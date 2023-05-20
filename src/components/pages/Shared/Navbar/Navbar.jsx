@@ -1,9 +1,30 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../../context/Auth/AuthProvider";
 
 const Navbar = () => {
+
+  const { user, logOut } = useContext(AuthContext);
+
+  const handdelLogout = () => {
+
+    logOut()
+      .then(() => { })
+      .catch(error => console.error(error))
+
+
+
+  }
+console.log(user);
+
+
+
+
   const navItems = <>
     <NavLink className="px-2 font-custom-100 hover:text-theme-100 ease-in duration-300 text-lg font-semibold" to='/'>Home</NavLink>
     <NavLink className="px-2 font-custom-100 hover:text-theme-100 ease-in duration-300 text-lg font-semibold" to='allToys'>All Toys</NavLink>
+    <NavLink className="px-2 font-custom-100 hover:text-theme-100 ease-in duration-300 text-lg font-semibold" to='myToys'>My Toys</NavLink>
+    <NavLink className="px-2 font-custom-100 hover:text-theme-100 ease-in duration-300 text-lg font-semibold" to='addToys'>Add a Toys</NavLink>
     <NavLink className="px-2 font-custom-100 hover:text-theme-100 ease-in duration-300 text-lg font-semibold" to='blog'>Blog</NavLink>
     <NavLink className="px-2 font-custom-100 hover:text-theme-100 ease-in duration-300 text-lg font-semibold" to='contact'>Contact</NavLink>
   </>;
@@ -35,16 +56,41 @@ const Navbar = () => {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-            {navItems}
+          {navItems}
         </ul>
       </div>
-      <div className="navbar-end">
-        <Link to='/login'>
-          <button className="btn rounded-full px-9 normal-case font-custom-100 bg-theme-100 hover:bg-theme-200 border-none">Sign in</button>
-        </Link>
-      </div>
+      {
+        user?.uid ? <div className="navbar-end ">
+          <div className="tooltip tooltip-bottom " data-tip={user?.displayName}  >
+            <div className="dropdown dropdown-end ">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  {
+                    user?.photoURL ? <img src={user?.photoURL} /> : <img src="https://cdn-icons-png.flaticon.com/512/6596/6596121.png" />
+                  }
+                </div>
+              </label>
+              <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                <li>
+                  <a className="justify-between">
+                    Profile
+                    <span className="badge">New</span>
+                  </a>
+                </li>
+                <li><a>Settings</a></li>
+                <li><a onClick={handdelLogout}>Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div> :
+          <div className="navbar-end">
+            <Link to='/login'>
+              <button className="btn rounded-full px-9 normal-case font-custom-100 bg-theme-100 hover:bg-theme-200 border-none">Login</button>
+            </Link>
+          </div>
+      }
     </div>
   );
 };
 
-export default Navbar;
+export default Navbar;

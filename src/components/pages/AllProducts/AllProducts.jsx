@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react";
-import { FaStar } from "react-icons/fa";
-import TabBar from "../TabBar/TabBar";
+import CommnonLoader from "../Shared/CommonLoader/CommnonLoader";
+import Product from "./Product";
 const AllProducts = () => {
   const [toyCollection, setToyCollection] = useState([])
+  const [loading, setLoading] = useState(false);
+
 
   useEffect(() =>{
-    fetch('http://localhost:2500/collection')
+    setLoading(true)
+    fetch('http://localhost:5000/collection')
     .then(res => res.json())
-    .then(data => setToyCollection(data))
+    .then(data => {
+      setToyCollection(data)
+      setLoading(false)
+    })
   },[])
   
   return (
@@ -17,35 +23,15 @@ const AllProducts = () => {
           All Products
         </h1>
       </div>
-      <TabBar>
-        
-      </TabBar>
+      {
+        loading && <CommnonLoader></CommnonLoader>
+
+      }
       <div className="grid md:grid-cols-2 lg:grid-cols-4 mx-auto gap-6 py-24 px-4">
         {
-        toyCollection.map((toyCard) => (
-          <div key={toyCard._id} className="card   shadow-2xl">
-            <figure className="h-52 ">
-              <img src={toyCard.picture} alt="" />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">{toyCard.name}</h2>
-              <p className="text-lg font-semibold">
-                Price:{" "}
-                <del className="text-slate-400 px-2">${toyCard.off_price}</del>{" "}
-                ${toyCard.price}
-              </p>
-              <div className="rating py-2">
-                <p className="text-theme-100 inline-flex items-center font-semibold text-xl">
-                  <FaStar/> <span className="px-3 ">{toyCard.rating}</span></p>
-              </div>
-              <div className="card-actions justify-end">
-                <button className="btn bg-theme-100 border-none rounded-full normal-case">
-                  View Details
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
+        toyCollection && toyCollection.map( toyCard => <Product key={toyCard._id} toyCard={toyCard} ></Product> )
+      
+      }
       </div>
     </div>
   );

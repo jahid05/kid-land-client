@@ -11,8 +11,7 @@ const AllProducts = () => {
 
   useEffect(() =>{
     setLoading(true)
-    fetch('http://localhost:5000/collection')
-    // fetch('https://kids-land-4u4y6cbvk-jahid05.vercel.app/collection')
+    fetch('https://kids-land.vercel.app/collection')
     .then(res => res.json())
     .then(data => {
       setToyCollection(data)
@@ -24,7 +23,7 @@ const AllProducts = () => {
     <div className="container mx-auto py-10">
       <div className="text-center">
         <h1 className="font-custom-200 inline-block text-2xl md:text-5xl border-b-4 border-theme-100 px-6">
-          All Products
+          All Toys
         </h1>
       </div>
       {

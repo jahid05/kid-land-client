@@ -1,26 +1,55 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { toast } from "react-hot-toast";
+import { AuthContext } from "../../../context/Auth/AuthProvider";
+import { useNavigate } from "react-router-dom";
+
+
 
 const AddToys = () => {
-    const addProductHandle = (event) => {
-        event.preventDefault();
-    
-        const form = event.target;
-        const name = form.name.value;
-        const description = form.description.value;
-        const price = form.price.value;
-        const off_price = form.off_price.value;
-        const photoURL = form.photoURL.value;
-    
-        const product = { name, description, price, off_price, photoURL };
-    
-        console.log(product);
-      };
+    const {user} = useContext(AuthContext);
+    console.log(user.uid);
 
+    const navigate = useNavigate()
+
+
+    const addProductHandle = (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+    const name = form.name.value;
+    const description = form.description.value;
+    const price = form.price.value;
+    const off_price = form.off_price.value;
+    const picture = form.picture.value;
+    const rating = 4.6;
+    const uid = user?.uid
+
+    const addToy = { name, description, price, off_price, rating, picture ,uid};
+    console.log(addToy);
+
+    fetch("https://kids-land.vercel.app/add-collection", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(addToy),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        toast.success("Add Successfully!");
+        navigate('/myToys')
+      })
+      
+  };
 
   return (
     <div className="hero px-4 min-h-screen bg-base-200">
       <div className="hero-content w-full lg:w-1/3">
-        <form onSubmit={addProductHandle} className="card w-full shadow-2xl bg-base-100">
+        <form
+          onSubmit={addProductHandle}
+          className="card w-full shadow-2xl bg-base-100"
+        >
           <div className="card-body">
             <div className="form-control">
               <label className="label">
@@ -44,7 +73,7 @@ const AddToys = () => {
                 placeholder="Description"
                 className="input rounded-full input-bordered"
               />
-            </div>  
+            </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Price</span>
@@ -52,7 +81,7 @@ const AddToys = () => {
               <input
                 required
                 name="price"
-                type="text"
+                type="number"
                 placeholder="Price"
                 className="input rounded-full input-bordered"
               />
@@ -64,25 +93,39 @@ const AddToys = () => {
               <input
                 required
                 name="off_price"
-                type="text"
+                type="number"
                 placeholder="Off Price"
                 className="input rounded-full input-bordered"
               />
             </div>
+            {/* <div className="form-control">
+              <label className="label">
+                <span className="label-text">Rating</span>
+              </label>
+              <input
+                required
+                name="rating"
+                type="number"
+                placeholder="Rating"
+                className="input rounded-full input-bordered"
+              />
+            </div> */}
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Photo URL</span>
               </label>
               <input
                 required
-                name="photoURL"
+                name="picture"
                 type="text"
                 placeholder="Photo URL"
                 className="input rounded-full input-bordered"
               />
             </div>
             <div className="form-control mt-6">
-              <button className="btn bg-theme-100 border-none rounded-full normal-case">Add a Toy</button>
+              <button className="btn bg-theme-100 border-none rounded-full normal-case">
+                Add a Toy
+              </button>
             </div>
           </div>
         </form>

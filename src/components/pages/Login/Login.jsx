@@ -42,7 +42,7 @@ const Login = () => {
     <div className="container mx-auto">
       <div className="lg:w-1/2 px-4 mx-auto shadow-xl">
         <div className="grid md:grid-cols-2 grid-cols-1 lg:my-40 my-20">
-          <div className="text-center text-white lg:text-left justify-center flex flex-col bg-theme-100 p-6 h-full space-y-2">
+          <div className="text-center rounded-s-2xl text-white lg:text-left justify-center flex flex-col bg-theme-100 p-6 h-full space-y-2">
             <h1 className="text-5xl font-bold">Hello, Friend!</h1>
             <p className="py-6">
               Enter your personal details and start journey with us

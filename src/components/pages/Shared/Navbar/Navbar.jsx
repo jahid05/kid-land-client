@@ -39,7 +39,7 @@ const Navbar = () => {
             className="px-2 font-custom-100 hover:text-theme-100 ease-in duration-300 text-lg font-semibold"
             to="addToys"
           >
-            Add a Toys
+            Add a Toy
           </NavLink>
         </>
       )}
@@ -84,7 +84,7 @@ const Navbar = () => {
             {navItems}
           </ul>
         </div>
-        <a className="font-custom-200 text-theme-100 normal-case  text-2xl">
+        <a className="font-custom-200 font-bold text-theme-100 normal-case  text-2xl">
           Kids Land
         </a>
       </div>
@@ -117,7 +117,7 @@ const Navbar = () => {
         <div className="navbar-end">
           <Link to="/login">
             <button className="btn rounded-full px-9 normal-case font-custom-100 bg-theme-100 border-none">
-              Login
+              Sign in
             </button>
           </Link>
         </div>

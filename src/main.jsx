@@ -15,6 +15,8 @@ import ToyDetails from "./components/pages/AllProducts/ToyDetails";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import AddToys from "./components/pages/AddToys/AddToys";
+import MyToys from "./components/pages/MyToys/MyToys";
+import Blog from "./components/pages/Blog/Blog";
 AOS.init();
 
 const router = createBrowserRouter([
@@ -45,11 +47,20 @@ const router = createBrowserRouter([
       {
         path: "toyDetails/:id",
         element: <ToyDetails></ToyDetails>,
-        loader: ({params}) => fetch(`http://localhost:5000/toyDetails/${params.id}`)
+        loader: ({params}) => fetch(`https://kids-land.vercel.app/toyDetails/${params.id}`)
+        
       },
       {
         path: "addToys",
         element: <AddToys></AddToys>,
+      },
+      {
+        path: "myToys",
+        element: <MyToys></MyToys>
+      },
+      {
+        path: "blog",
+        element: <Blog></Blog>
       }
     ],
   },

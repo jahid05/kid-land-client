@@ -55,21 +55,7 @@ const Gallery = () => {
         />
       )}
     </div>
-        {/* <div className="card border-4  ">
-            <img className="rounded-xl" src="https://secure.img1-cg.wfcdn.com/im/63326222/resize-h380-w380%5Ecompr-r70/1540/154087253/Kids+Ride+on+Car.jpg" alt="" />
         
-        <div className="card border-4  ">
-            <img className="rounded-xl" src="https://images.thdstatic.com/productImages/2ad2ca94-96e8-4f5b-b997-dc4858a63d9b/svn/blacks-costway-kid-cars-ty327764bk-e1_600.jpg" alt="" />
-        </div>
-        <div className="card border-4  ">
-            <img className="rounded-xl" src="https://img.aosomcdn.com/thumbnail/100/n0/product/2021/12/17/z2j10e17dc60bd069.jpg" alt="" />
-        </div>
-        <div className="card border-4  ">
-            <img className="rounded-xl" src="https://cdn.shopify.com/s/files/1/0495/0887/6454/products/electric_car_children_1024x.jpg?v=1633522885" alt="" />
-        </div>
-        <div className="card border-4  ">
-            <img className="rounded-xl" src="https://m.media-amazon.com/images/I/91IEFHzr9iL._AC_SL1500_.jpg" alt="" />
-        </div> */}
       </div>
     </div>
   );

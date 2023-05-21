@@ -14,6 +14,7 @@ import AuthProvider from "./context/Auth/AuthProvider";
 import ToyDetails from "./components/pages/AllProducts/ToyDetails";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import AddToys from "./components/pages/AddToys/AddToys";
 AOS.init();
 
 const router = createBrowserRouter([
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
         path: "toyDetails/:id",
         element: <ToyDetails></ToyDetails>,
         loader: ({params}) => fetch(`http://localhost:5000/toyDetails/${params.id}`)
+      },
+      {
+        path: "addToys",
+        element: <AddToys></AddToys>,
       }
     ],
   },

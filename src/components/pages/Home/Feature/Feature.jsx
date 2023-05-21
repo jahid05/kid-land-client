@@ -8,13 +8,13 @@ const Feature = () => {
           <div className="card-body text-white">
             <span className='text-6xl'><FaShippingFast></FaShippingFast></span>
             <h2 className="card-title">Free Shipping</h2>
-            <p className='text-lg'>On all orders over $49.00</p>
+            <p className='text-lg'>On all orders over $10.00</p>
           </div>
         </div>
         <div className="card  bg-violet-500 shadow-xl">
           <div className="card-body text-white">
             <span className='text-6xl'><FaMoneyBillAlt></FaMoneyBillAlt></span>
-            <h2 className="card-title">15 days returns</h2>
+            <h2 className="card-title">7 days returns</h2>
             <p className='text-lg'>Money back guarantee</p>
           </div>
         </div>

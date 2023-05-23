@@ -1,15 +1,17 @@
 import { Link, useNavigate } from "react-router-dom";
 import {} from "firebase/auth";
 import { useContext, useState } from "react";
-import { toast } from "react-hot-toast";
 import { AuthContext } from "../../../context/Auth/AuthProvider";
 import CommnonLoader from "../Shared/CommonLoader/CommnonLoader";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
   const [loader, setLoder] = useState(false);
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
   const [error, setError] = useState('')
+
+
   const signUpHandle = (event) => {
     event.preventDefault();
 
@@ -25,7 +27,11 @@ const SignUp = () => {
     createUser(email, password)
       .then((res) => {
         updateProfile(displayName, photoURL);
-        toast.success("Sign up Successfully!");
+        Swal.fire(
+          'Sign up Successfully!',
+          'You clicked the button!',
+          'success'
+        )
         navigate("/");
         console.log(res);
       })
@@ -61,36 +67,11 @@ const SignUp = () => {
             </Link>
           </div>
           <div className="card">
-            <h1 className="font-bold text-center text-theme-100 py-5 md:text-4xl text-2xl">
+            <h1 className="font-bold text-center text-theme-100 py-2 md:text-4xl text-2xl">
               Create Account
             </h1>
-            {/* <div className="flex justify-center">
-              <Link>
-                <button
-                  className="text-2xl rounded-full mx-4"
-                >
-                  <FaGoogle></FaGoogle>
-                </button>
-              </Link>
-              <Link>
-                <button className="text-2xl rounded-full mx-4">
-                  <FaFacebook></FaFacebook>
-                </button>
-              </Link>
-              <Link>
-                <button className="text-2xl rounded-full mx-4">
-                  <FaLinkedinIn></FaLinkedinIn>
-                </button>
-              </Link>
-            </div>
-            <p className="text-center text-lg">
-              or use your email for registration
-            </p> */}
             <form onSubmit={signUpHandle} className="card-body">
               <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Full Name</span>
-                </label>
                 <input
                   required
                   name="displayName"
@@ -100,9 +81,6 @@ const SignUp = () => {
                 />
               </div>
               <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
                 <input
                   required
                   name="email"
@@ -112,9 +90,6 @@ const SignUp = () => {
                 />
               </div>
               <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Photo URL</span>
-                </label>
                 <input
                   required
                   name="photoURL"
@@ -124,9 +99,6 @@ const SignUp = () => {
                 />
               </div>
               <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
                 <input
                   required
                   name="password"

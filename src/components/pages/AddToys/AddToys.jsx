@@ -1,30 +1,48 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../../context/Auth/AuthProvider";
 import { useNavigate } from "react-router-dom";
-
-
+import Swal from "sweetalert2";
 
 const AddToys = () => {
-    const {user} = useContext(AuthContext);
-    console.log(user.uid);
+  const { user } = useContext(AuthContext);
+  // console.log(user.uid);
 
-    const navigate = useNavigate()
+  const [sellerName, setSellerName] = useState('')
 
+  const navigate = useNavigate();
 
-    const addProductHandle = (event) => {
+  const addProductHandle = (event) => {
     event.preventDefault();
 
     const form = event.target;
-    const name = form.name.value;
+    const sellerName = form.sellerName.value; 
+    const sellerEmail = form.sellerEmail.value; 
+    const product = form.product.value;
     const description = form.description.value;
     const price = form.price.value;
     const off_price = form.off_price.value;
     const picture = form.picture.value;
-    const rating = 4.6;
-    const uid = user?.uid
+    const rating = form.rating.value;
+    const category = form.category.value;
+    const quantity = form.quantity.value;
+    
+    
+    const uid = user?.uid;
 
-    const addToy = { name, description, price, off_price, rating, picture ,uid};
+    const addToy = {
+      sellerName,
+      sellerEmail,
+      product,
+      description,
+      price,
+      off_price,
+      rating,
+      picture,
+      quantity,
+      category,
+      uid,
+    };
     console.log(addToy);
 
     fetch("https://kids-land.vercel.app/add-collection", {
@@ -37,8 +55,12 @@ const AddToys = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        toast.success("Add Successfully!");
-        navigate('/myToys')
+        Swal.fire(
+          'Added Successfully!',
+          'You clicked the button!',
+          'success'
+        )
+        navigate("/myToys");
       })
       
   };
@@ -50,78 +72,99 @@ const AddToys = () => {
           onSubmit={addProductHandle}
           className="card w-full shadow-2xl bg-base-100"
         >
-          <div className="card-body">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Name</span>
-              </label>
-              <input
-                required
-                name="name"
-                type="text"
-                placeholder="Name"
-                className="input rounded-full input-bordered"
-              />
+          <div className="card-body  border-2 border-slate-300 rounded-2xl">
+            <h1 className="font-bold text-center text-theme-100 py-3 md:text-4xl text-2xl">
+              Add a Toy
+            </h1>
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="form-control">
+                <input
+                  required
+                  name="sellerName"
+                  type="text"
+                  placeholder="Seller Name"
+                  className="input rounded-full input-bordered"
+                  onChange={(e) => setSellerName(e.target.value)}
+                />
+              </div>
+              <div className="form-control">
+                <input
+                  name="sellerEmail"
+                  type="text"
+                  placeholder="Seller Email"
+                  className="input rounded-full input-bordered"
+                />
+              </div>
+              <div className="form-control">
+                <input
+                  required
+                  name="product"
+                  type="text"
+                  placeholder="Product Name"
+                  className="input rounded-full input-bordered"
+                />
+              </div>
+              <div className="form-control">
+                <input
+                  required
+                  name="picture"
+                  type="text"
+                  placeholder="Photo URL"
+                  className="input rounded-full input-bordered"
+                />
+              </div>
+              <div className="form-control">
+                <input
+                  required
+                  name="price"
+                  type="number"
+                  placeholder="Price"
+                  className="input rounded-full input-bordered"
+                />
+              </div>
+              <div className="form-control">
+                <input
+                  required
+                  name="quantity"
+                  type="number"
+                  placeholder="Quantity"
+                  className="input rounded-full input-bordered"
+                />
+              </div>
+              <div className="form-control">
+                <input
+                  required
+                  name="off_price"
+                  type="number"
+                  placeholder="Off Price"
+                  className="input rounded-full input-bordered"
+                />
+              </div>
+              <select required name="rating" className="select select-bordered rounded-full w-full"> 
+                <option disabled selected>
+                  Rating
+                </option>
+                <option>1</option>
+                <option>1.5</option>
+                <option>2</option>
+                <option>2.5</option>
+                <option>3</option>
+                <option>3.5</option>
+                <option>4</option>
+                <option>4.5</option>
+                <option>5</option>
+              </select>
+              <select required name="category" className="select select-bordered rounded-full w-full">         
+                <option disabled selected>
+                  Category
+                </option>
+                <option >Car</option>
+                <option >Jeep</option>
+                <option >Monster</option>
+              </select>
+              
             </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Description</span>
-              </label>
-              <input
-                name="description"
-                type="text"
-                placeholder="Description"
-                className="input rounded-full input-bordered"
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Price</span>
-              </label>
-              <input
-                required
-                name="price"
-                type="number"
-                placeholder="Price"
-                className="input rounded-full input-bordered"
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Off Price</span>
-              </label>
-              <input
-                required
-                name="off_price"
-                type="number"
-                placeholder="Off Price"
-                className="input rounded-full input-bordered"
-              />
-            </div>
-            {/* <div className="form-control">
-              <label className="label">
-                <span className="label-text">Rating</span>
-              </label>
-              <input
-                required
-                name="rating"
-                type="number"
-                placeholder="Rating"
-                className="input rounded-full input-bordered"
-              />
-            </div> */}
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Photo URL</span>
-              </label>
-              <input
-                required
-                name="picture"
-                type="text"
-                placeholder="Photo URL"
-                className="input rounded-full input-bordered"
-              />
-            </div>
+            <textarea required name="description" className="textarea textarea-bordered" placeholder="Description"></textarea>
             <div className="form-control mt-6">
               <button className="btn bg-theme-100 border-none rounded-full normal-case">
                 Add a Toy

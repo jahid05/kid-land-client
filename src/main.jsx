@@ -17,6 +17,7 @@ import 'aos/dist/aos.css';
 import AddToys from "./components/pages/AddToys/AddToys";
 import MyToys from "./components/pages/MyToys/MyToys";
 import Blog from "./components/pages/Blog/Blog";
+import AllToys from "./components/pages/AllToys/AllToys";
 AOS.init();
 
 const router = createBrowserRouter([
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       },
       {
         path: "allToys",
+        element: <AllToys></AllToys>
+      },
+      {
+        path: "allProducts",
         element: <AllProducts></AllProducts>,
       },
       {

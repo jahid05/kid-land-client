@@ -3,7 +3,7 @@ import { FaFacebook, FaGoogle, FaLinkedinIn } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../context/Auth/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
-import { toast } from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { signIn, googleLoginPopup } = useContext(AuthContext);
@@ -18,20 +18,33 @@ const Login = () => {
 
     signIn(email, password)
       .then((res) => {
-        toast.success("Sign in Successfully!");
+        Swal.fire(
+          'Sign in Successfully!',
+          'You clicked the button!',
+          'success'
+        )
         navigate('/')
         console.log(res);
       })
       .catch((err) => {
         console.log(err);
-        setError(err.message);
+        // setError(err.message);
+        Swal.fire(
+          'Something is wrong!',
+          'You clicked the button!',
+          'error',
+        )
       });
   };
   const handelGoogleLogin = () => {
     googleLoginPopup(googleProvider)
       .then(() => {
         navigate('/');
-        toast.success("Sign in Successfully!");
+        Swal.fire(
+          'Sign in Successfully!',
+          'You clicked the button!',
+          'success'
+        )
       })
       .catch((err) => {
         console.log(err);
@@ -80,9 +93,6 @@ const Login = () => {
             <p className="text-center text-lg">or use your account</p>
             <form className="card-body">
               <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
                 <input
                   required
                   type="text"
@@ -94,9 +104,6 @@ const Login = () => {
                 />
               </div>
               <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
                 <input
                   required
                   type="password"
@@ -114,7 +121,7 @@ const Login = () => {
                 <Link>
                   <button
                     onClick={handleLogin}
-                    className="btn bg-theme-100 border-none btn-block rounded-full"
+                    className="btn normal-case bg-theme-100 border-none btn-block rounded-full"
                     type="submit"
                   >
                     Sign in

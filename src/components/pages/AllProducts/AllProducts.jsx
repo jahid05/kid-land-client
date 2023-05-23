@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import CommnonLoader from "../Shared/CommonLoader/CommnonLoader";
 import Product from "./Product";
+
+import CommnonLoader from "../Shared/CommonLoader/CommnonLoader";
 
 
 

@@ -8,10 +8,10 @@ import Swal from "sweetalert2";
 const Login = () => {
   const { signIn, googleLoginPopup } = useContext(AuthContext);
   const [email, setEmail] = useState("");
+  const [error, setError] = useState('');
   const [password, setPassword] = useState("");
   const googleProvider = new GoogleAuthProvider();
   const navigate = useNavigate();
-  const [error, setError] = useState('');
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -28,7 +28,6 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err);
-        // setError(err.message);
         Swal.fire(
           'Something is wrong!',
           'You clicked the button!',

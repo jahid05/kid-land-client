@@ -8,7 +8,6 @@ import Home from "./components/pages/Home/Home.jsx";
 import AllProducts from "./components/pages/AllProducts/AllProducts";
 import Login from "./components/pages/Login/Login";
 import SignUp from "./components/pages/SignUp/SignUp";
-import Error from "./components/pages/Error/Error";
 import Contact from "./components/pages/Contact/Contact";
 import AuthProvider from "./context/Auth/AuthProvider";
 import ToyDetails from "./components/pages/AllProducts/ToyDetails";
@@ -18,13 +17,18 @@ import AddToys from "./components/pages/AddToys/AddToys";
 import MyToys from "./components/pages/MyToys/MyToys";
 import Blog from "./components/pages/Blog/Blog";
 import AllToys from "./components/pages/AllToys/AllToys";
+import Error from "./components/pages/Error/Error"
+
 AOS.init();
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Routes></Routes>,
+    errorElement: <Error></Error>,
     children: [
+     
+     
       {
         path: "/",
         element: <Home></Home>,
@@ -68,10 +72,6 @@ const router = createBrowserRouter([
         element: <Blog></Blog>
       }
     ],
-  },
-  {
-    path: '*',
-    element: <Error></Error>
   }
 ]);
 

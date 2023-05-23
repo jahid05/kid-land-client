@@ -1,5 +1,4 @@
-import { useContext, useState } from "react";
-import { toast } from "react-hot-toast";
+import { useContext } from "react";
 import { AuthContext } from "../../../context/Auth/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -7,8 +6,6 @@ import Swal from "sweetalert2";
 const AddToys = () => {
   const { user } = useContext(AuthContext);
   // console.log(user.uid);
-
-  const [sellerName, setSellerName] = useState('')
 
   const navigate = useNavigate();
 
@@ -84,7 +81,6 @@ const AddToys = () => {
                   type="text"
                   placeholder="Seller Name"
                   className="input rounded-full input-bordered"
-                  onChange={(e) => setSellerName(e.target.value)}
                 />
               </div>
               <div className="form-control">
@@ -108,7 +104,7 @@ const AddToys = () => {
                 <input
                   required
                   name="picture"
-                  type="text"
+                  type="url"
                   placeholder="Photo URL"
                   className="input rounded-full input-bordered"
                 />

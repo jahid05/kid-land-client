@@ -26,6 +26,7 @@ const Home = () => {
       <AllProducts></AllProducts>
       <Gallery></Gallery>
       <Contact></Contact>
+      
     </div>
   );
 };

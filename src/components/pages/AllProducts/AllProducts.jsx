@@ -23,7 +23,7 @@ const AllProducts = () => {
     <div className="container mx-auto py-10">
       <div className="text-center">
         <h1 className="font-custom-200 inline-block text-2xl md:text-5xl border-b-4 border-theme-100 px-6">
-          All Toys
+          All Products
         </h1>
       </div>
       {

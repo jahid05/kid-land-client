@@ -21,7 +21,6 @@ import Error from "./components/pages/Error/Error";
 import {
   QueryClient,
   QueryClientProvider,
-  useQuery,
 } from "@tanstack/react-query";
 
 AOS.init();

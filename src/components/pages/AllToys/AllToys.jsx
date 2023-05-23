@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { FaPen, FaTrash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CommnonLoader from "../Shared/CommonLoader/CommnonLoader";
+import Swal from "sweetalert2";
 
 const AllToys = () => {
   const [toyCollection, setToyCollection] = useState([]);
@@ -17,6 +18,36 @@ const AllToys = () => {
         setLoading(false);
       });
   }, []);
+
+  const navigate = useNavigate();
+
+  const deleteHandle = (id) => {
+    console.log(id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/toy-delete/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your coffee has been deleted.", "success");
+              navigate("/allToys")
+            }
+          });
+      }
+    });
+  };
 
   return (
     <div className="flex flex-col font-custom-100 p-4 space-y-4  container mx-auto  text-black">
@@ -100,7 +131,7 @@ const AllToys = () => {
                     <FaPen></FaPen>
                   </Link>
                   <button
-                    // onClick={() => deleteHandle(allToy._id)}
+                    onClick={() => deleteHandle(allToy._id)}
                     className="ms-1 btn btn-error btn-xs"
                   >
                     <FaTrash></FaTrash>

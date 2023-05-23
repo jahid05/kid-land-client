@@ -5,7 +5,6 @@ import Swal from "sweetalert2";
 
 const AddToys = () => {
   const { user } = useContext(AuthContext);
-  // console.log(user.uid);
 
   const navigate = useNavigate();
 
@@ -26,6 +25,7 @@ const AddToys = () => {
     
     
     const uid = user?.uid;
+
 
     const addToy = {
       sellerName,
@@ -78,6 +78,7 @@ const AddToys = () => {
                 <input
                   required
                   name="sellerName"
+                  defaultValue={user?.displayName}
                   type="text"
                   placeholder="Seller Name"
                   className="input rounded-full input-bordered"
@@ -85,7 +86,9 @@ const AddToys = () => {
               </div>
               <div className="form-control">
                 <input
+                  required
                   name="sellerEmail"
+                  defaultValue={user?.email}
                   type="text"
                   placeholder="Seller Email"
                   className="input rounded-full input-bordered"

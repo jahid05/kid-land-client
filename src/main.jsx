@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import  { Toaster } from 'react-hot-toast';
+import { Toaster } from "react-hot-toast";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Routes from "./components/Routes/Routes.jsx";
 import Home from "./components/pages/Home/Home.jsx";
@@ -11,15 +11,22 @@ import SignUp from "./components/pages/SignUp/SignUp";
 import Contact from "./components/pages/Contact/Contact";
 import AuthProvider from "./context/Auth/AuthProvider";
 import ToyDetails from "./components/pages/AllProducts/ToyDetails";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import AOS from "aos";
+import "aos/dist/aos.css";
 import AddToys from "./components/pages/AddToys/AddToys";
 import MyToys from "./components/pages/MyToys/MyToys";
 import Blog from "./components/pages/Blog/Blog";
 import AllToys from "./components/pages/AllToys/AllToys";
-import Error from "./components/pages/Error/Error"
+import Error from "./components/pages/Error/Error";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from "@tanstack/react-query";
 
 AOS.init();
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -27,15 +34,13 @@ const router = createBrowserRouter([
     element: <Routes></Routes>,
     errorElement: <Error></Error>,
     children: [
-     
-     
       {
         path: "/",
         element: <Home></Home>,
       },
       {
         path: "allToys",
-        element: <AllToys></AllToys>
+        element: <AllToys></AllToys>,
       },
       {
         path: "allProducts",
@@ -51,13 +56,13 @@ const router = createBrowserRouter([
       },
       {
         path: "contact",
-        element: <Contact></Contact>
+        element: <Contact></Contact>,
       },
       {
         path: "toyDetails/:id",
         element: <ToyDetails></ToyDetails>,
-        loader: ({params}) => fetch(`https://kids-land.vercel.app/toyDetails/${params.id}`)
-        
+        loader: ({ params }) =>
+          fetch(`https://kids-land.vercel.app/toyDetails/${params.id}`),
       },
       {
         path: "addToys",
@@ -65,21 +70,23 @@ const router = createBrowserRouter([
       },
       {
         path: "myToys",
-        element: <MyToys></MyToys>
+        element: <MyToys></MyToys>,
       },
       {
         path: "blog",
-        element: <Blog></Blog>
-      }
+        element: <Blog></Blog>,
+      },
     ],
-  }
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-      <Toaster />
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <RouterProvider router={router} />
+        <Toaster />
+      </AuthProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );

@@ -4,12 +4,16 @@ import { Link } from "react-router-dom";
 import { FaPen, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 
+
 const MyToys = () => {
   const { user } = useContext(AuthContext);
 
   const uid = user?.uid;
 
   const [data, setData] = useState([0]);
+
+  
+
 
   const fetchData = (uid) => {
     fetch(`https://kids-land.vercel.app/myToys/${uid}`)
@@ -35,14 +39,16 @@ const MyToys = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://kids-land.vercel.app/collection/${id}`, {
+        fetch(`http://localhost:5000/toy-delete/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
-            if (data.deleteCount > 0) {
+
+            if (data.deletedCount > 0) {
               Swal.fire("Deleted!", "Your coffee has been deleted.", "success");
+              fetchData();
             }
           });
       }

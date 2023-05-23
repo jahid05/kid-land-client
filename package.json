@@ -13,6 +13,7 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.29.7",
     "aos": "^3.0.0-beta.6",
     "daisyui": "^2.51.6",
     "firebase": "^9.22.0",

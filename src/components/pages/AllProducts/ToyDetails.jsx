@@ -7,14 +7,14 @@ const ToyDetails = () => {
 
   return (
     <div className="container mx-auto h-screen">
-      <div className="card lg:card-side lg:py-32 py-12">
-        <figure>
+      <div className="card lg:card-side lg:py-32">
+        <figure className="p-12">
           <img src={details.picture} alt="Album" />
         </figure>
         <div className="card-body">
           <div className="">
-            <h2 className="card-title text-2xl">{details.product}</h2>
-            <p className="text-lg py-4 font-semibold">{details.description}</p>
+            <h2 className="card-title md:text-2xl">{details.product}</h2>
+            <p className="md:text-lg py-4">{details.description}</p>
             <p className="text-theme-100 inline-flex py-8 items-center font-semibold text-xl">
               <FaStar /> <span className="px-3 ">{details.rating}</span>
             </p>

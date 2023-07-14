@@ -58,7 +58,7 @@ const Login = () => {
   
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto h-screen">
       <div className="lg:w-1/2 px-4 mx-auto shadow-xl">
         <div className="grid md:grid-cols-2 grid-cols-1 lg:my-40 my-20">
           <div className="text-center rounded-s-2xl text-white lg:text-left justify-center flex flex-col bg-theme-100 p-6 h-full space-y-2">

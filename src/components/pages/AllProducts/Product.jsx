@@ -17,7 +17,7 @@ const Product = ({ toyCard }) => {
   } = toyCard;
 
   return (
-    <div className="card   shadow-2xl">
+    <div data-aos="zoom-in-up" data-aos-duration="1000" className="card shadow-xl border border-slate-300 p-2">
       <figure className="h-52 ">
         <img src={picture} alt="" />
       </figure>

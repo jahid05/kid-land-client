@@ -3,15 +3,15 @@ import { BiCurrentLocation, BiWorld } from "react-icons/bi";
 
 const Contact = () => {
   return (
-    <div className="container mx-auto">
-      <div className="text-center">
+    <div className="container mx-auto py-10 px-4">
+      <div className="text-center ">
         <h1 className="font-custom-200 inline-block text-2xl md:text-5xl border-b-4 border-theme-100 px-6">
           Contact
         </h1>
       </div>
-        <div className="lg:w-1/2 px-4 mx-auto shadow-xl">
-          <div className="grid md:grid-cols-2 grid-cols-1 lg:my-40 my-20 rounded-2xl">
-            <div className="card">
+        <div data-aos="zoom-down-in" data-aos-duration="1000" className="lg:w-1/2 px-4 mx-auto">
+          <div className="grid md:grid-cols-2 grid-cols-1 lg:my-40 my-20">
+            <div className="md:rounded-s-2xl shadow-xl border border-slate-300 ">
               <h1 className="font-bold text-center text-theme-100 py-5 md:text-4xl text-2xl">
                 Send us a message
               </h1>
@@ -56,7 +56,7 @@ const Contact = () => {
                 </div>
               </form>
             </div>
-            <div className="text-white justify-center flex flex-col md:rounded-e-2xl bg-theme-100 p-5 h-full space-y-2">
+            <div className="md:rounded-e-2xl text-white justify-center flex flex-col bg-theme-100 p-5 h-full space-y-2">
               <h1 className="text-4xl font-bold">Contact</h1>
               <p className="text-lg">
                 We are open for any suggestion or just to have a chat

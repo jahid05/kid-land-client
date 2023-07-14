@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { FaPen, FaTrash } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
 import CommnonLoader from "../Shared/CommonLoader/CommnonLoader";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const AllToys = () => {
   const [toyCollection, setToyCollection] = useState([]);
@@ -21,7 +20,6 @@ const AllToys = () => {
       });
   }, [search]);
 
-  const navigate = useNavigate();
   
   
 
@@ -106,14 +104,13 @@ const AllToys = () => {
               <td className="text-sm">{allToy.quantity}</td>
 
               <td className="text-xs">
-                {/* <p>{addToy.description.length  >= 50? `${addToy.description.slice(0, 48)}... More` : addToy.description }</p> */}
-                <div className="w-52  overflow-y-scroll">
+                <div className="w-52 overflow-hidden">
                   <p>{allToy.description}</p>
                 </div>
               </td>
               <td>
                 <div className="">
-                  <button className="btn btn-sm normal-case ">View</button>
+                  <Link to={`/toyDetails/${allToy._id}`} className="btn btn-sm bg-theme-100 border-none rounded-full normal-case">View</Link>
                 </div>
               </td>
             </tr>

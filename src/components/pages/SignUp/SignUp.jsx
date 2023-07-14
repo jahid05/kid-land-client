@@ -51,7 +51,7 @@ const SignUp = () => {
       });
   };
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto h-screen">
       {loader && <CommnonLoader></CommnonLoader>}
       <div className="lg:w-1/2 px-4 mx-auto shadow-xl">
         <div className="grid md:grid-cols-2 grid-cols-1 lg:my-40 my-20 rounded-2xl">

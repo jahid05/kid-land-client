@@ -18,10 +18,8 @@ import MyToys from "./components/pages/MyToys/MyToys";
 import Blog from "./components/pages/Blog/Blog";
 import AllToys from "./components/pages/AllToys/AllToys";
 import Error from "./components/pages/Error/Error";
-import {
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import PrivateRoute from "./components/Routes/PrivateRoute";
 
 AOS.init();
 
@@ -59,7 +57,11 @@ const router = createBrowserRouter([
       },
       {
         path: "toyDetails/:id",
-        element: <ToyDetails></ToyDetails>,
+        element: (
+          <PrivateRoute>
+            <ToyDetails></ToyDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`https://kids-land.vercel.app/toyDetails/${params.id}`),
       },

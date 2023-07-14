@@ -3,23 +3,21 @@ import Product from "./Product";
 
 import CommnonLoader from "../Shared/CommonLoader/CommnonLoader";
 
-
-
 const AllProducts = () => {
-  const [toyCollection, setToyCollection] = useState([])
+  const [toyCollection, setToyCollection] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [asc, setAsc] = useState(true);
 
+  useEffect(() => {
+    setLoading(true);
+    fetch(`https://kids-land.vercel.app/collection?sort=${asc ? "asc" : "desc"}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setToyCollection(data);
+        setLoading(false);
+      });
+  }, [asc]);
 
-  useEffect(() =>{
-    setLoading(true)
-    fetch('https://kids-land.vercel.app/collection')
-    .then(res => res.json())
-    .then(data => {
-      setToyCollection(data)
-      setLoading(false)
-    })
-  },[])
-  
   return (
     <div className="container mx-auto py-10">
       <div className="text-center">
@@ -27,15 +25,21 @@ const AllProducts = () => {
           All Products
         </h1>
       </div>
-      {
-        loading && <CommnonLoader></CommnonLoader>
 
-      }
+      {loading && <CommnonLoader></CommnonLoader>}
+      <div className="flex justify-center py-5">
+        <button
+          onClick={() => setAsc(!asc)}
+          className="btn border-none normal-case bg-theme-100"
+        >
+          {asc ? "High to Low" : "Low to High"}
+        </button>
+      </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-4 mx-auto gap-6 py-24 px-4">
-        {
-        toyCollection && toyCollection.map( toyCard => <Product key={toyCard._id} toyCard={toyCard} ></Product> )
-      
-      }
+        {toyCollection &&
+          toyCollection.map((toyCard) => (
+            <Product key={toyCard._id} toyCard={toyCard}></Product>
+          ))}
       </div>
     </div>
   );

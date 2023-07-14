@@ -6,22 +6,28 @@ const ToyDetails = () => {
   console.log(details);
 
   return (
-    <div className="container mx-auto">
-      <div className="card lg:card-side lg:py-24 py-12">
+    <div className="container mx-auto h-screen">
+      <div className="card lg:card-side lg:py-32 py-12">
         <figure>
           <img src={details.picture} alt="Album" />
         </figure>
         <div className="card-body">
-          <h2 className="card-title text-2xl">{details.name}</h2>
-          <p className="text-lg font-semibold">{details.description}</p>
-          <div className="flex">
-            <p className="text-lg font-semibold">${details.price}</p>
-            <p className="text-theme-100 inline-flex items-center font-semibold text-xl">
+          <div className="">
+            <h2 className="card-title text-2xl">{details.product}</h2>
+            <p className="text-lg py-4 font-semibold">{details.description}</p>
+            <p className="text-theme-100 inline-flex py-8 items-center font-semibold text-xl">
               <FaStar /> <span className="px-3 ">{details.rating}</span>
             </p>
-          </div>
-          <div className="card-actions justify-end">
-            <button className="btn bg-theme-100 border-none rounded-full normal-case">Add Toy</button>
+            <img src={details.photoURL} />
+            <h2>{details.displayName}</h2>
+            <div className="flex">
+              <div className="">
+                <p className="font-semibold text-2xl">${details.price}</p>
+                <p className="text-lg my-2">
+                  <del>${details.off_price}</del>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

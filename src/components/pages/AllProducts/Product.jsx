@@ -46,3 +46,4 @@ const Product = ({ toyCard }) => {
 };
 
 export default Product;
+

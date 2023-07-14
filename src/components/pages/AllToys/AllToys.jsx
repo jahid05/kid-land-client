@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaPen, FaTrash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import CommnonLoader from "../Shared/CommonLoader/CommnonLoader";
@@ -7,48 +7,30 @@ import Swal from "sweetalert2";
 const AllToys = () => {
   const [toyCollection, setToyCollection] = useState([]);
   const [loading, setLoading] = useState(false);
+  const searchRef = useRef(null);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     setLoading(true);
-    fetch("https://kids-land.vercel.app/collection")
+    // fetch(`https://kids-land.vercel.app/collection?search=${search}`)
+    fetch(`https://kids-land.vercel.app/collection?search=${search}`)
       .then((res) => res.json())
       .then((data) => {
-        data?.slice(0, 5);
         setToyCollection(data);
         setLoading(false);
       });
-  }, []);
+  }, [search]);
 
   const navigate = useNavigate();
+  
+  
 
-  const deleteHandle = (id) => {
-    console.log(id);
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        fetch(`http://localhost:5000/toy-delete/${id}`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-
-            if (data.deletedCount > 0) {
-              Swal.fire("Deleted!", "Your coffee has been deleted.", "success");
-              navigate("/allToys")
-            }
-          });
-      }
-    });
+  const handleSearch = () => {
+    const searchValue = searchRef.current.value;
+    setSearch(searchValue);
+    console.log(search);
   };
-
+  
   return (
     <div className="flex flex-col font-custom-100 p-4 space-y-4  container mx-auto  text-black">
       {loading && <CommnonLoader></CommnonLoader>}
@@ -56,11 +38,15 @@ const AllToys = () => {
         <div className="form-control">
           <div className="input-group">
             <input
+              ref={searchRef}
               type="text"
               placeholder="Search…"
-              className="input input-bordered"
+              className="input input-bordered focus:outline-none"
             />
-            <button className="btn bg-theme-100 border-none btn-square">
+            <button
+              onClick={handleSearch}
+              className="btn bg-theme-100 border-none btn-square"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -87,7 +73,7 @@ const AllToys = () => {
             <th>Price</th>
             <th>Quantity</th>
             <th>Description</th>
-            <th>Action</th>
+            <th>View Details</th>
           </tr>
         </thead>
         <tbody>
@@ -127,15 +113,7 @@ const AllToys = () => {
               </td>
               <td>
                 <div className="">
-                  <Link className="ms-1 btn btn-warning btn-xs">
-                    <FaPen></FaPen>
-                  </Link>
-                  <button
-                    onClick={() => deleteHandle(allToy._id)}
-                    className="ms-1 btn btn-error btn-xs"
-                  >
-                    <FaTrash></FaTrash>
-                  </button>
+                  <button className="btn btn-sm normal-case ">View</button>
                 </div>
               </td>
             </tr>

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFacebook, FaGoogle, FaLinkedinIn } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../context/Auth/AuthProvider";
@@ -12,7 +12,12 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const googleProvider = new GoogleAuthProvider();
   const navigate = useNavigate();
+  
+  const location = useLocation();
 
+  const from = location.state?.from?.pathname || "/";
+
+  console.log(location);
   const handleLogin = (event) => {
     event.preventDefault();
 
@@ -23,7 +28,7 @@ const Login = () => {
           'You clicked the button!',
           'success'
         )
-        navigate('/')
+        navigate(from, { replace: true });
         console.log(res);
       })
       .catch((err) => {
@@ -38,17 +43,19 @@ const Login = () => {
   const handelGoogleLogin = () => {
     googleLoginPopup(googleProvider)
       .then(() => {
-        navigate('/');
         Swal.fire(
           'Sign in Successfully!',
           'You clicked the button!',
           'success'
         )
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  
 
   return (
     <div className="container mx-auto">

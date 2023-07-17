@@ -19,7 +19,7 @@ const Product = ({ toyCard }) => {
   return (
     <div data-aos="zoom-in-up" data-aos-duration="1000" className="card shadow-xl border border-slate-300 p-2">
       <figure className="h-52 ">
-        <img src={picture} alt="" />
+        <img className="hover:scale-110 duration-700" src={picture} alt="" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{product}</h2>
@@ -35,7 +35,7 @@ const Product = ({ toyCard }) => {
         <div className="card-actions justify-end">
           <Link
             to={`/toyDetails/${_id}`}
-            className="btn bg-theme-100 border-none rounded-full normal-case"
+            className="btn bg-theme-100 border-none duration-700 transition-all rounded-full normal-case"
           >
             View Details
           </Link>

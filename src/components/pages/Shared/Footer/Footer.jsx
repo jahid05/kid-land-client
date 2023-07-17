@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div className="bg-theme-300">
       <footer className="footer container mx-auto p-10 text-white">
-        <div data-aos="zoom-in-left" data-aos-duration="1000">
+        <div data-aos="zoom-in-down" data-aos-duration="1000">
           <h1 className="text-4xl font-custom-200 ">Kids Land</h1>
           <div className="">
             <button className="text-2xl me-7 my-2"><FaFacebook></FaFacebook></button>
@@ -12,7 +12,7 @@ const Footer = () => {
             <button className="text-2xl me-7 my-2"><FaTwitter></FaTwitter></button>
           </div>
         </div>
-        <div data-aos="zoom-in-up" data-aos-duration="1000">
+        <div data-aos="zoom-in-down" data-aos-duration="1000">
           <span className="footer-title">Services</span>
           <a className="link link-hover">Design</a>
           <a className="link link-hover">Marketing</a>
@@ -24,7 +24,7 @@ const Footer = () => {
           <a className="link link-hover">Contact</a>
           <a className="link link-hover">Career</a>
         </div>
-        <div data-aos="zoom-in-right" data-aos-duration="1000">
+        <div data-aos="zoom-in-down" data-aos-duration="1000">
           <span className="footer-title">Legal</span>
           <a className="link link-hover">Terms of use</a>
           <a className="link link-hover">Privacy policy</a>

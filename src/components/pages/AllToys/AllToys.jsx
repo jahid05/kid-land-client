@@ -11,7 +11,6 @@ const AllToys = () => {
 
   useEffect(() => {
     setLoading(true);
-    // fetch(`https://kids-land.vercel.app/collection?search=${search}`)
     fetch(`https://kids-land.vercel.app/collection?search=${search}`)
       .then((res) => res.json())
       .then((data) => {
@@ -67,11 +66,11 @@ const AllToys = () => {
         {/* head */}
         <thead>
           <tr>
-            <th>Toy Name</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Description</th>
-            <th>View Details</th>
+            <th className="normal-case">Toy Name</th>
+            <th className="normal-case">Price</th>
+            <th className="normal-case">Quantity</th>
+            <th className="normal-case">Description</th>
+            <th className="normal-case">View Details</th>
           </tr>
         </thead>
         <tbody>

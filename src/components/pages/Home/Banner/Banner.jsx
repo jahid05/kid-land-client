@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
-    <div className="carousel w-full" data-aos-duration="1000">
+    <div className="carousel w-full min-h-screen" data-aos-duration="1000">
       <div id="slide1" className="carousel-item relative w-full">
-        <div className="hero min-h-screen">
+        <div className="hero">
           <div className="hero-content flex-col lg:flex-row-reverse">
             <img data-aos="fade-down-left" data-aos-duration="1000" src={img} className="rounded-lg md:w-2/4" />
             <div data-aos="fade-right" data-aos-duration="1000" className="space-y-5 lg:text-start text-center">
@@ -39,7 +39,7 @@ const Banner = () => {
         </div>
       </div>
       <div id="slide2" className="carousel-item relative w-full">
-        <div className="hero min-h-screen">
+        <div className="hero">
           <div className="hero-content flex-col lg:flex-row-reverse">
             <img data-aos="fade-down-left" data-aos-duration="1000" src={delivery} className="rounded-lg md:w-2/4" />
             <div data-aos="fade-right" data-aos-duration="1000" className="space-y-5 lg:text-start text-center">
@@ -69,7 +69,7 @@ const Banner = () => {
         </div>
       </div>
       <div id="slide3" className="carousel-item relative w-full">
-        <div className="hero min-h-screen">
+        <div className="hero">
           <div className="hero-content flex-col lg:flex-row-reverse">
             <img data-aos="fade-down-left" data-aos-duration="1000" src={card} className="rounded-lg md:w-2/4" />
             <div data-aos="fade-right" data-aos-duration="1000" className="space-y-5 lg:text-start text-center">
